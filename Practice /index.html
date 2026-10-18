@@ -10,8 +10,44 @@
     <h2 class="Head">Satyam Vishwakarma</h2>
 </body>
 <script>
-    const requestUrl = 'http://dog-api.kinduff.com'
-    console.log("Executing");
+    // async function getDogFact(){
+    //     try{
+
+    //     const requestUrl = "http://dog-api.kinduff.com"
+
+    //     const response = await fetch(requestUrl);
+
+    //     const data = await response.json();
+    //     console.log(data);
+    //     }
+    //     catch(error){
+    //         console.log("Error");
+    //     }
+    // }
+    // getDogFact();
+    async function getDogFact() {
+    try {
+    // 1. Updated to the correct HTTPS URL and specific v2 facts endpoint
+        const requestUrl = "https://dogapi.dog"; 
+    
+        const response = await fetch(requestUrl);
+    
+    // Check if the network request actually succeeded
+        if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+    
+    // 2. Log the actual fact string out of the JSON:API data structure
+        console.log(data.data[0].attributes.body); 
+    } catch (error) {
+        console.log("Error:", error);
+    }
+    }
+
+    getDogFact();
+
 </script>
 
 </html>
